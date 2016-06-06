@@ -3,7 +3,9 @@
 #Shashank Namala
 ![Shashank Namala](http://i66.tinypic.com/2eprrmb.jpg)
 
-FirstName: Shashank LastName: Namala 
+FirstName: Shashank 
+
+LastName: Namala 
 
 Email ID: namalashashank92@gmail.com
 
