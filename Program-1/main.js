@@ -6,8 +6,8 @@
 
 // Shashank Namala
 // Roster #15
-// http://171.55.43.23/Mwsu-2D-Gaming-Doe/Program-1 
-// http://github.com/doedoebird/Mwsu-2D-Gaming-Doe/
+// 107.170.129.29/Mwsu-2D-Gaming-namala/Program-1
+// https://github.com/shashanknamala/Mwsu-2D-Gaming-namala/
 
 // Main state fo the game
 var mainState = {
