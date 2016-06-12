@@ -1,8 +1,8 @@
 // Here are the names and links for my group:
 // Muni Bhupathi Dandu
 // Roster #4
-// http://120.34.43.111/Mwsu-2D-Gaming-Smith/Program-1
-// http://github.com/smittyville/Mwsu-2D-Gaming-Smith/
+// http://107.170.126.34/Mwsu-2D-Gaming-dandu/Program-1/
+// https://github.com/MuniBhupathi-Dandu/Mwsu-2D-Gaming-dandu
 
 // Shashank Namala
 // Roster #15
