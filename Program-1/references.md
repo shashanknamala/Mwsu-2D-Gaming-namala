@@ -7,6 +7,6 @@
 
 ### 2. Timer code reference:
 
-###### js Fiddle website (Author Lewis Lane)
+###### js Fiddle website (Author: Lewis Lane)
     (https://jsfiddle.net/lewster32/vd70o41p/)
 
