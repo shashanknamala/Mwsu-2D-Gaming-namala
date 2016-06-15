@@ -4,7 +4,7 @@ var menuState = {
         game.add.image(0, 0, 'background');
 
         // Changed the y position to -50 so we don't see the label
-        var nameLabel = game.add.text(game.width/6, -50, 'Super Pacman', { font: '50px Arial', fill: '#ffffff' });
+        var nameLabel = game.add.text(game.width/6, -50, 'SmIlEy PaCmAn', { font: '32px Engravers MT', fill: '#ffffff' });
 
         // Create a tween on the label
         var tween = game.add.tween(nameLabel);
@@ -14,6 +14,8 @@ var menuState = {
 
         // Start the tween
         tween.start();
+        
+       
 
         //var scoreLabel = game.add.text(game.width/2, game.height/2, 'score: ' + game.global.score, { font: '25px Arial', fill: '#ffffff' });
         //scoreLabel.anchor.setTo(0.5, 0.5);
@@ -34,7 +36,7 @@ var menuState = {
         this.muteButton = game.add.button(20, 20, 'mute', this.toggleSound,this);
         
         var text = 'score: ' + game.global.score + '\nbest score: ' + localStorage.getItem('bestScore');
-        var scoreLabel = game.add.text(game.width/3, game.height/2, text, { font: '25px Arial', fill: '#ffffff', align: 'center' });
+        var scoreLabel = game.add.text(game.width/3, game.height/2.5, text, { font: '25px Arial', fill: '#ffffff', align: 'center' });
 
         var startLabel = game.add.text(game.width/2, game.height-80, 'press the up arrow key to start', { font: '25px Arial', fill: '#ffffff' });
         startLabel.anchor.setTo(0.5, 0.5);
@@ -45,6 +47,21 @@ var menuState = {
         
         
         game.add.tween(nameLabel).to({y: 80}, 1000).easing(Phaser.Easing.Bounce.Out).start();
+        
+        // Create the tween
+        var tween = game.add.tween(startLabel);
+        // Rotate the label to -2 degrees in 500ms
+        tween.to({angle: -2}, 500);
+        // Then rotate the label to +2 degrees in 1000ms
+        tween.to({angle: 2}, 1000);
+        // And get back to our initial position in 500ms
+        tween.to({angle: 0}, 500);
+        // Loop indefinitely the tween
+        tween.loop();
+        // Start the tween
+        tween.start();
+        
+        game.add.tween(startLabel).to({angle: -2}, 500).to({angle: 2}, 1000).to({angle: 0}, 500).loop().start();
     },
 
     start: function() {

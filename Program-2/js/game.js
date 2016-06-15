@@ -10,3 +10,4 @@ game.state.add('menu', menuState);
 game.state.add('play', playState);
 
 game.state.start('boot');
+

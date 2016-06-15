@@ -8,7 +8,7 @@ var loadState = {
         progressBar.anchor.setTo(0.5, 0.5);
         game.load.setPreloadSprite(progressBar);
     
-        game.load.spritesheet('player', 'assets/pacman.png', 20, 20);
+        game.load.spritesheet('player', 'assets/pacman.png', 26, 26);
         game.load.image('enemy', 'assets/ghost.png');
         game.load.image('coin', 'assets/fruit.png');
         game.load.image('wallV', 'assets/wallVertical.png');
@@ -23,6 +23,7 @@ var loadState = {
         // Load the music in 2 different formats in the load.js file
         game.load.audio('music', ['assets/music.ogg', 'assets/music.mp3']);
         game.load.spritesheet('mute', 'assets/muteButton.png', 28, 22);
+        game.load.image('pixel', 'assets/pixel.png');
     },
 
     create: function() { 
