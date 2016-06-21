@@ -47,9 +47,9 @@ SpaceHipster.Game.prototype = {
     this.bullets = this.game.add.group();
     this.bullets.enableBody = true;
     this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
-    this.bullets.createMultiple(10, 'bullet');
+    this.bullets.createMultiple(20, 'bullet');
     this.bullets.setAll('anchor.x', 0.5);
-    this.bullets.setAll('anchor.y', 1);
+    this.bullets.setAll('anchor.y', 0.5);
     this.bullets.setAll('outOfBoundsKill', true);
     this.bullets.setAll('checkWorldBounds', true);
 
@@ -111,8 +111,9 @@ SpaceHipster.Game.prototype = {
 
         if (this.bullet)
         {
-            this.bullet.reset(this.sprite.body.x+16, this.sprite.body.y + 16);
-            this.bullet.lifespan = 1200;
+            this.bullet.rotation = this.sprite.rotation + Math.PI/2;
+            this.bullet.reset(this.sprite.body.x + 16, this.sprite.body.y +16);
+            this.bullet.lifespan = 1700;
             this.bullet.rotation = this.sprite.rotation;
             this.game.physics.arcade.velocityFromRotation(this.sprite.rotation, 400, this.bullet.body.velocity);
             this.bulletTime = this.game.time.now-1000;
@@ -128,6 +129,28 @@ SpaceHipster.Game.prototype = {
     this.game.physics.arcade.overlap(this.sprite, this.collectables, this.collect, null, this);
     this.game.physics.arcade.overlap(this.bullets, this.asteroids, this.collisionHandler, null, this);
     this.game.physics.arcade.overlap(this.bullets, null, null, null, this);
+        
+         if (this.bullet){
+            if(this.bullet.body.x > this.game.world.width){                     
+                    this.bullet.body.velocity.x = this.bullet.body.velocity.x * -1;   
+                this.bullet.body.rotation += 90;
+            }
+
+            if(this.bullet.body.x < 0){           
+                this.bullet.body.velocity.x = this.bullet.body.velocity.x * -1;   
+                this.bullet.body.rotation -= 90;
+            }
+
+            if(this.bullet.body.y > this.game.world.height){                                          
+                this.bullet.body.velocity.y = this.bullet.body.velocity.y * -1;
+                this.bullet.body.rotation += 90;
+            }
+
+            if(this.bullet.body.y < 0){          
+                this.bullet.body.velocity.y = this.bullet.body.velocity.y * -1;
+                this.bullet.body.rotation -= 90;
+            }
+        }
   },
     
     screenWrap: function(sprite) {
@@ -251,10 +274,10 @@ if (this.skillLevel == 0)
                   asteriod.scale.setTo(this.game.rnd.integerInRange(SkillLevel.easy[0], SkillLevel.easy[1])/40);
 
                   //physics properties
-                  asteriod.body.velocity.x = this.game.rnd.pick([-20,20]);
-                  asteriod.body.velocity.y = this.game.rnd.pick([-20,20]);
-                    //asteriod.body.bounce.x=10;
-                    //asteriod.body.bounce.y=10;
+                  asteriod.body.velocity.x = this.game.rnd.integerInRange(-20,20);
+                  asteriod.body.velocity.y = this.game.rnd.integerInRange(-20,20);
+                    asteriod.body.bounce.x=1;
+                    asteriod.body.bounce.y=1;
                   asteriod.body.immovable = true;
                   asteriod.body.collideWorldBounds = true;
                 }
@@ -269,24 +292,24 @@ if (this.skillLevel == 0)
                 for (var i = 0; i < numAsteroids/2; i++) {
                   //add sprite
                   asteriod = this.asteroids.create(this.game.world.randomX, this.game.world.randomY, 'rock');
-                  asteriod.scale.setTo(this.game.rnd.integerInRange(SkillLevel.medium[0], SkillLevel.medium[1]/30));
+                  asteriod.scale.setTo(this.game.rnd.integerInRange(SkillLevel.medium[0], SkillLevel.medium[1]/20));
 
                   //physics properties
-                  asteriod.body.velocity.x = this.game.rnd.pick([-40,40]);
-                  asteriod.body.velocity.y = this.game.rnd.pick([-40,40]);
-                    asteriod.body.bounce.x=.6;
-                    asteriod.body.bounce.y=.6;
+                  asteriod.body.velocity.x = this.game.rnd.integerInRange(-40,40);
+                  asteriod.body.velocity.y = this.game.rnd.integerInRange(-40,40);
+                    asteriod.body.bounce.x=1;
+                    asteriod.body.bounce.y=1;
                   asteriod.body.immovable = true;
                   asteriod.body.collideWorldBounds = true;
                 }
                 for (var i = 0; i < numAsteroids/2; i++) {
                   //add sprite
                   asteriod = this.asteroids.create(this.game.world.randomX, this.game.world.randomY, 'rock');
-                  asteriod.scale.setTo(this.game.rnd.integerInRange(SkillLevel.medium[0], SkillLevel.medium[1]/80));
+                  asteriod.scale.setTo(this.game.rnd.integerInRange(SkillLevel.medium[0], SkillLevel.medium[1]/30));
 
                   //physics properties
-                  asteriod.body.velocity.x = this.game.rnd.pick([-45,45]);
-                  asteriod.body.velocity.y = this.game.rnd.pick([-45,45]);
+                  asteriod.body.velocity.x = this.game.rnd.integerInRange(-45,45);
+                  asteriod.body.velocity.y = this.game.rnd.integerInRange(-45,45);
                     asteriod.body.bounce.x=1;
                     asteriod.body.bounce.y=1;
                   asteriod.body.immovable = true;
@@ -305,8 +328,8 @@ if (this.skillLevel == 0)
                   asteriod = this.asteroids.create(this.game.world.randomX, this.game.world.randomY, 'rock');
                   asteriod.scale.setTo(this.game.rnd.integerInRange(SkillLevel.hard[0], SkillLevel.easy[1])/20);
                   //physics properties
-                  asteriod.body.velocity.x = this.game.rnd.pick([-60,60]);
-                  asteriod.body.velocity.y = this.game.rnd.pick([-60,60]);
+                  asteriod.body.velocity.x = this.game.rnd.integerInRange(-60,60);
+                  asteriod.body.velocity.y = this.game.rnd.integerInRange(-60,60);
                     asteriod.body.bounce.x=1;
                     asteriod.body.bounce.y=1;
                   asteriod.body.immovable = true;
@@ -315,12 +338,12 @@ if (this.skillLevel == 0)
               for (var i = 0; i < numAsteroids/2; i++) {
                   //add sprite
                   asteriod = this.asteroids.create(this.game.world.randomX, this.game.world.randomY, 'rock');
-                  asteriod.scale.setTo(this.game.rnd.integerInRange(SkillLevel.hard[0], SkillLevel.easy[1])/80);
+                  asteriod.scale.setTo(this.game.rnd.integerInRange(SkillLevel.hard[0], SkillLevel.easy[1])/60);
                   //physics properties
-                  asteriod.body.velocity.x = this.game.rnd.pick([-80,80]);
-                  asteriod.body.velocity.y = this.game.rnd.pick([-80,80]);
-                    asteriod.body.bounce.x=2;
-                    asteriod.body.bounce.y=2;
+                  asteriod.body.velocity.x = this.game.rnd.integerInRange(-80,80);
+                  asteriod.body.velocity.y = this.game.rnd.integerInRange(-80,80);
+                    asteriod.body.bounce.x=1;
+                    asteriod.body.bounce.y=1;
                   asteriod.body.immovable = true;
                   asteriod.body.collideWorldBounds = true;
                 }
